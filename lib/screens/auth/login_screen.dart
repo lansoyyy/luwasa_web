@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 10,
                   ),
                   TextWidget(
-                    text: 'Bureau of Fire Protection',
+                    text: 'Luwasa Admin Panel',
                     fontSize: 24,
                     fontFamily: 'Bold',
                   ),
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 size: 75,
               ),
               TextWidget(
-                text: 'Hi, User!',
+                text: 'Hi, Admin!',
                 fontSize: 32,
                 fontFamily: 'Bold',
               ),
