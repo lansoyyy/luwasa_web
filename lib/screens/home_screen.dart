@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
                 child: Container(
-              color: Colors.grey[200],
+              color: Colors.grey[100],
               child: IndexedStack(
                 index: index,
                 children: const [
