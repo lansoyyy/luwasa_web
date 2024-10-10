@@ -1,8 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:luwasa_web/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:luwasa_web/screens/home_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyDDC44TmNk1_SuHhdKZYN_yHECKMQmCLMc",
+          authDomain: "luwasa-ae518.firebaseapp.com",
+          projectId: "luwasa-ae518",
+          storageBucket: "luwasa-ae518.appspot.com",
+          messagingSenderId: "1020320193869",
+          appId: "1:1020320193869:web:2932bae84430bf55a32b04"));
   runApp(const MyApp());
 }
 
