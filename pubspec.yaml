@@ -41,6 +41,7 @@ dependencies:
   cloud_firestore:
   firebase_storage:
   firebase_auth:
+  syncfusion_flutter_charts:
 
 dev_dependencies:
   flutter_test:

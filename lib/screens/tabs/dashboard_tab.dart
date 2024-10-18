@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:luwasa_web/widgets/text_widget.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});
@@ -136,15 +137,60 @@ class DashboardTab extends StatelessWidget {
             fontFamily: 'Bold',
             color: Colors.black,
           ),
-          const Card(
-            color: Colors.white,
-            child: SizedBox(
-              height: 350,
-              width: double.infinity,
-            ),
-          ),
+          StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('Payments')
+                  .orderBy('date')
+                  .snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  print(snapshot.error);
+                  return const Center(child: Text('Error'));
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.black,
+                    )),
+                  );
+                }
+
+                // Get the documents and calculate the total amount
+                final data = snapshot.requireData;
+                return Card(
+                  color: Colors.white,
+                  child: SizedBox(
+                    height: 350,
+                    width: double.infinity,
+                    child: SfCartesianChart(
+                      series: <CartesianSeries>[
+                        SplineSeries<ChartData, int>(
+                          dataSource: [
+                            for (int i = 0; i < data.docs.length; i++)
+                              ChartData(data.docs[i]['month'],
+                                  data.docs[i]['amount'].toDouble()),
+                          ],
+                          xValueMapper: (ChartData data, _) =>
+                              data.x, // Correct: x is a String
+                          yValueMapper: (ChartData data, _) =>
+                              data.y, // Ensure y is a double
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              }),
         ],
       ),
     );
   }
+}
+
+class ChartData {
+  ChartData(this.x, this.y);
+  final int x;
+  final double? y;
 }
