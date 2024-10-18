@@ -2,6 +2,7 @@ import 'package:luwasa_web/screens/auth/login_screen.dart';
 import 'package:luwasa_web/screens/tabs/dashboard_tab.dart';
 import 'package:luwasa_web/screens/tabs/reports_tab.dart';
 import 'package:luwasa_web/screens/tabs/users_tab.dart';
+import 'package:luwasa_web/utils/colors.dart';
 import 'package:luwasa_web/widgets/logout_widget.dart';
 import 'package:luwasa_web/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: primary,
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        onPressed: () {},
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Padding(

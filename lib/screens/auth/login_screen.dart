@@ -5,6 +5,7 @@ import 'package:luwasa_web/widgets/textfield_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:luwasa_web/widgets/toast_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -130,55 +131,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: password,
               ),
               const SizedBox(
-                height: 10,
+                height: 25,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30, bottom: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ButtonWidget(
-                      width: 150,
-                      label: 'Login',
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
-                      },
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: TextWidget(
-                        text: 'Forgot Password?',
-                        fontSize: 14,
-                        fontFamily: 'Bold',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextWidget(
-                    text: 'No account yet?',
-                    fontSize: 14,
-                    fontFamily: 'Medium',
-                    color: Colors.red,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        inLogin = false;
-                      });
-                    },
-                    child: TextWidget(
-                      text: 'Register here',
-                      fontSize: 14,
-                      fontFamily: 'Bold',
-                      color: Colors.red,
-                    ),
-                  ),
-                ],
+              ButtonWidget(
+                width: 300,
+                label: 'Login',
+                onPressed: () {
+                  if (username.text == 'admin_username' &&
+                      password.text == 'admin_password') {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const HomeScreen()));
+                  } else {
+                    showToast('Invalid admin credentaiils');
+                  }
+                },
               ),
             ],
           ),
