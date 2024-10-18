@@ -22,6 +22,7 @@ Future addPayment(
     'uid': userId,
     'date': DateTime.now(),
     'month': DateTime.now().month,
+    'day': DateTime.now().day,
     'year': DateTime.now().year,
     'monthName': DateFormat.MMMM().format(DateTime.now()),
   };
