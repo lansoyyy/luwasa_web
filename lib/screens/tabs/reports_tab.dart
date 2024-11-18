@@ -15,6 +15,7 @@ class _ReportsTabState extends State<ReportsTab> {
     'Meter ID',
     'Customer Name',
     'Baranggay',
+    'Status',
     'Total Payment',
   ];
   @override
@@ -78,6 +79,13 @@ class _ReportsTabState extends State<ReportsTab> {
                     DataCell(
                       TextWidget(
                         text: data.docs[i]['brgy'],
+                        fontSize: 16,
+                        fontFamily: 'Medium',
+                      ),
+                    ),
+                    DataCell(
+                      TextWidget(
+                        text: data.docs[i]['isPaid'] ? 'Paid' : 'Pending',
                         fontSize: 16,
                         fontFamily: 'Medium',
                       ),

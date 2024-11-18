@@ -317,7 +317,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  final amount = TextEditingController();
+  final previousReading = TextEditingController();
+  final currentReading = TextEditingController();
   showAmount(dynamic data) {
     showDialog(
       context: context,
@@ -331,8 +332,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFieldWidget(
-                    label: 'Enter Amount',
-                    controller: amount,
+                    label: 'Enter Previous Reading',
+                    controller: previousReading,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFieldWidget(
+                    label: 'Enter Current Reading',
+                    controller: currentReading,
                   ),
                   const SizedBox(
                     height: 20,
@@ -348,7 +356,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           data['meterid'],
                           data['brgy'],
                           data.id,
-                          int.parse(amount.text));
+                          (int.parse(currentReading.text) -
+                                  int.parse(previousReading.text)) *
+                              30);
                       Navigator.pop(context);
                     },
                   ),
