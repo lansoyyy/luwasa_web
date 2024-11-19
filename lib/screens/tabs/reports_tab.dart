@@ -23,7 +23,7 @@ class _ReportsTabState extends State<ReportsTab> {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('Payments')
-            .where('isPaid', isEqualTo: true)
+            // .where('isPaid', isEqualTo: true)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
